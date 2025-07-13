@@ -1,0 +1,209 @@
+DOCKER KOMUTLARI - BOOKSTORE API
+================================
+
+1. DOCKER İMAGE OLUŞTURMA
+=========================
+
+# Basit image build
+docker build -t bookstore-api .
+
+# Tag ile image build
+docker build -t bookstore-api:v1.0 .
+
+# Build context belirtme
+docker build -f Dockerfile -t bookstore-api .
+
+2. DOCKER CONTAINER ÇALIŞTIRMA
+==============================
+
+# Basit çalıştırma
+docker run -p 8080:8080 bookstore-api
+
+# Detached mode (arka planda)
+docker run -d -p 8080:8080 --name bookstore-container bookstore-api
+
+# Environment variables ile
+docker run -d -p 8080:8080 \
+  -e ASPNETCORE_ENVIRONMENT=Production \
+  -e ASPNETCORE_URLS=http://+:8080 \
+  --name bookstore-container \
+  bookstore-api
+
+# Volume mount ile (development)
+docker run -d -p 8080:8080 \
+  -v $(pwd):/app \
+  --name bookstore-dev \
+  bookstore-api
+
+3. DOCKER COMPOSE KOMUTLARI
+===========================
+
+# Servisleri başlat
+docker-compose up
+
+# Arka planda başlat
+docker-compose up -d
+
+# Build ve başlat
+docker-compose up --build
+
+# Belirli servis başlat
+docker-compose up bookstore-api
+
+# Servisleri durdur
+docker-compose down
+
+# Servisleri durdur ve volume'ları sil
+docker-compose down -v
+
+# Logları görüntüle
+docker-compose logs -f bookstore-api
+
+4. DOCKER YÖNETİM KOMUTLARI
+===========================
+
+# Çalışan container'ları listele
+docker ps
+
+# Tüm container'ları listele
+docker ps -a
+
+# Image'ları listele
+docker images
+
+# Container'ı durdur
+docker stop bookstore-container
+
+# Container'ı başlat
+docker start bookstore-container
+
+# Container'ı yeniden başlat
+docker restart bookstore-container
+
+# Container'ı sil
+docker rm bookstore-container
+
+# Image'ı sil
+docker rmi bookstore-api
+
+# Container içine gir
+docker exec -it bookstore-container /bin/bash
+
+# Container loglarını görüntüle
+docker logs bookstore-container
+
+# Container loglarını takip et
+docker logs -f bookstore-container
+
+5. DOCKER CLEAN-UP KOMUTLARI
+============================
+
+# Durmuş container'ları sil
+docker container prune
+
+# Kullanılmayan image'ları sil
+docker image prune
+
+# Kullanılmayan network'leri sil
+docker network prune
+
+# Kullanılmayan volume'ları sil
+docker volume prune
+
+# Tüm kullanılmayan kaynakları sil
+docker system prune
+
+# Tüm kaynakları sil (dikkatli kullan!)
+docker system prune -a
+
+6. DOCKER INSPECT KOMUTLARI
+===========================
+
+# Container detaylarını görüntüle
+docker inspect bookstore-container
+
+# Image detaylarını görüntüle
+docker inspect bookstore-api
+
+# Container'ın IP adresini öğren
+docker inspect bookstore-container | grep IPAddress
+
+# Container'ın port mapping'ini görüntüle
+docker port bookstore-container
+
+7. DOCKER STATS VE MONİTORİNG
+=============================
+
+# Container kaynak kullanımını görüntüle
+docker stats bookstore-container
+
+# Tüm container'ların kaynak kullanımı
+docker stats
+
+# Container'ın süreçlerini görüntüle
+docker top bookstore-container
+
+8. PRODUCTION DEPLOYMENT
+========================
+
+# Production için image build
+docker build -t bookstore-api:production .
+
+# Production container çalıştır
+docker run -d \
+  -p 80:8080 \
+  -e ASPNETCORE_ENVIRONMENT=Production \
+  -e ASPNETCORE_URLS=http://+:8080 \
+  --name bookstore-prod \
+  --restart unless-stopped \
+  bookstore-api:production
+
+# Health check
+docker exec bookstore-prod curl -f http://localhost:8080/health
+
+9. DOCKER REGISTRY
+==================
+
+# Docker Hub'a push
+docker tag bookstore-api:latest username/bookstore-api:latest
+docker push username/bookstore-api:latest
+
+# Docker Hub'dan pull
+docker pull username/bookstore-api:latest
+
+10. TROUBLESHOOTING
+==================
+
+# Container içindeki dosyaları görüntüle
+docker exec bookstore-container ls -la /app
+
+# Container'ın environment variables'larını görüntüle
+docker exec bookstore-container printenv
+
+# Container'ın network bilgilerini görüntüle
+docker exec bookstore-container ip addr show
+
+# Container'ın süreçlerini görüntüle
+docker exec bookstore-container ps aux
+
+HIZLI BAŞLATMA KOMUTLARI
+========================
+
+# Development ortamı
+docker-compose up -d
+
+# Production build ve çalıştırma
+docker build -t bookstore-api . && docker run -d -p 8080:8080 --name bookstore bookstore-api
+
+# Uygulama URL'leri
+# - API: http://localhost:8080
+# - Swagger: http://localhost:8080/swagger
+# - Health Check: http://localhost:8080/health
+
+NOTLAR
+======
+- Container'lar port 8080'de çalışır
+- Host'ta 8080 portunu kullanın
+- Health check endpoint'i /health
+- Production'da HTTPS kullanın
+- Logları düzenli olarak kontrol edin 

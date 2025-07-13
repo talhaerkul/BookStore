@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore", "BookStore\BookStore.csproj", "{828CEDB4-5295-4D6B-A5F4-F34F01049E8D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStoreAPI", "BookStore\BookStoreAPI.csproj", "{828CEDB4-5295-4D6B-A5F4-F34F01049E8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Models", "BookStoreModels\BookStore.Models.csproj", "{FA2A671E-33AF-4D65-B4F3-77B2BA810AB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.DataAccess", "BookStore.DataAccess\BookStore.DataAccess.csproj", "{3896788F-E4A5-4CBE-9D08-E7A50B809E91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Utility", "BookStore.Utility\BookStore.Utility.csproj", "{65FBBA3F-7416-483E-B24C-4BC116660213}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{828CEDB4-5295-4D6B-A5F4-F34F01049E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{828CEDB4-5295-4D6B-A5F4-F34F01049E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{828CEDB4-5295-4D6B-A5F4-F34F01049E8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA2A671E-33AF-4D65-B4F3-77B2BA810AB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA2A671E-33AF-4D65-B4F3-77B2BA810AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA2A671E-33AF-4D65-B4F3-77B2BA810AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA2A671E-33AF-4D65-B4F3-77B2BA810AB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3896788F-E4A5-4CBE-9D08-E7A50B809E91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3896788F-E4A5-4CBE-9D08-E7A50B809E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3896788F-E4A5-4CBE-9D08-E7A50B809E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3896788F-E4A5-4CBE-9D08-E7A50B809E91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65FBBA3F-7416-483E-B24C-4BC116660213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65FBBA3F-7416-483E-B24C-4BC116660213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65FBBA3F-7416-483E-B24C-4BC116660213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65FBBA3F-7416-483E-B24C-4BC116660213}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
